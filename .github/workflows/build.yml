@@ -17,6 +17,9 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
+      - name: Give permissions to Gradle
+        run: chmod +x ./gradlew
+
       - name: Build with Gradle
         run: ./gradlew bootJar
 
