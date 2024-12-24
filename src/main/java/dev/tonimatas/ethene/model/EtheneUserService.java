@@ -19,7 +19,7 @@ public class EtheneUserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<EtheneUser> user = repository.findByEmail(username);
-        
+
         if (user.isPresent()) {
             EtheneUser etheneUser = user.get();
             return User.builder()

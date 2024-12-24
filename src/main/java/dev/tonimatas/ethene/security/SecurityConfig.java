@@ -21,24 +21,23 @@ public class SecurityConfig {
     public SecurityConfig(EtheneUserService userService) {
         this.userService = userService;
     }
-    
+
     @Bean
     public UserDetailsService userDetailsService() {
         return userService;
     }
-    
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-    
+
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(userService);
         provider.setPasswordEncoder(passwordEncoder());
         return provider;
-
     }
 
     @Bean

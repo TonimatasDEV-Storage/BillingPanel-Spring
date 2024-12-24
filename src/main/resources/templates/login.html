@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Login - Ethene Hosting</title>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" type="module"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
@@ -11,16 +11,17 @@
     <form action="/req/login" method="post">
         <h1>Login</h1>
         <div class="dialog-row">
-            <label th:if="${param.error}" th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}" class="text-center redText"></label>
+            <label class="text-center redText" th:if="${param.error}"
+                   th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"></label>
         </div>
         <div class="inputbox">
             <ion-icon name="mail-outline"></ion-icon>
-            <input name="username" id="username" type="email" required>
+            <input id="username" name="username" required type="email">
             <label for="username">Email</label>
         </div>
         <div class="inputbox">
             <ion-icon name="lock-closed-outline"></ion-icon>
-            <input name="password" type="password" id="password" required>
+            <input id="password" name="password" required type="password">
             <label for="password">Password</label>
         </div>
         <div class="register">

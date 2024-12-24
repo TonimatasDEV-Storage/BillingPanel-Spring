@@ -22,7 +22,7 @@ signupForm.addEventListener('submit', (event) => {
         return;
     }
 
-    const data = { firstname, lastname, email, password };
+    const data = {firstname, lastname, email, password};
     const jsonData = JSON.stringify(data);
 
     fetch('/req/signup', {

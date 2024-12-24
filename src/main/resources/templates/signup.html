@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Create account - Ethene Hosting</title>
-    <script src="/js/signup.js" defer></script>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script defer src="/js/signup.js"></script>
+    <script src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" type="module"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
@@ -12,27 +12,27 @@
     <form id="signupForm">
         <div class="inputbox">
             <ion-icon name="person-outline"></ion-icon>
-            <input type="text" id="firstname" name="firstname" required>
+            <input id="firstname" name="firstname" required type="text">
             <label for="firstname">First Name</label>
         </div>
         <div class="inputbox">
             <ion-icon name="person-outline"></ion-icon>
-            <input type="text" id="lastname" name="lastname" required>
+            <input id="lastname" name="lastname" required type="text">
             <label for="lastname">Last Name</label>
         </div>
         <div class="inputbox">
             <ion-icon name="mail-outline"></ion-icon>
-            <input type="email" id="email" name="email" required>
+            <input id="email" name="email" required type="email">
             <label for="email">Email</label>
         </div>
         <div class="inputbox">
             <ion-icon name="lock-closed-outline"></ion-icon>
-            <input type="password" id="password" name="password" required>
+            <input id="password" name="password" required type="password">
             <label for="password">Password</label>
         </div>
         <div class="inputbox">
             <ion-icon name="lock-closed-outline"></ion-icon>
-            <input type="password" id="passwordcon" name="passwordcon" required>
+            <input id="passwordcon" name="passwordcon" required type="password">
             <label for="passwordcon">Confirm Password</label>
         </div>
         <p id="errorMessage" style="color: red; display: none;"></p>
