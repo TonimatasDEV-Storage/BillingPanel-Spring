@@ -50,20 +50,22 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
-                .formLogin(httpForm -> {
-                    httpForm.loginPage("/req/login").permitAll();
-                    httpForm.loginProcessingUrl("/req/login").permitAll();
-                    httpForm.defaultSuccessUrl("/", true);
-                }).authorizeHttpRequests(registry -> {
-                    registry.requestMatchers("/req/signup", "/css/**", "/js/**").permitAll();
-                    registry.anyRequest().authenticated();
-                }).rememberMe(config -> {
-                    config.tokenRepository(persistentTokenRepository());
-                    config.key("test");
-                    config.alwaysRemember(true);
-                    config.userDetailsService(userDetailsService());
-                }).logout(config -> config.logoutUrl("/req/logout")
-                        .logoutSuccessUrl("/req/login")
+                .formLogin(httpForm -> httpForm
+                        .permitAll()
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/", true))
+                .authorizeHttpRequests(registry -> registry
+                        .requestMatchers("/register", "/css/**", "/js/**")
+                        .permitAll()
+                        .anyRequest()
+                        .authenticated())
+                .rememberMe(config -> config
+                        .tokenRepository(persistentTokenRepository())
+                        .key("test")
+                        .alwaysRemember(true)
+                        .userDetailsService(userDetailsService())
+                ).logout(config -> config.logoutUrl("/logout")
+                        .logoutSuccessUrl("/login")
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID", "remember-me"))
                 .build();
@@ -73,15 +75,15 @@ public class SecurityConfig {
     public PersistentTokenRepository persistentTokenRepository() {
         JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
         tokenRepository.setDataSource(dataSource);
-        
+
         if (tokenRepository.getJdbcTemplate() != null) {
             String query = "SELECT COUNT(*) FROM information_schema.tables WHERE table_name = ?";
             Integer count = tokenRepository.getJdbcTemplate().queryForObject(query, Integer.class, "persistent_logins");
             boolean databaseExits = count != null && count > 0;
-            
+
             tokenRepository.setCreateTableOnStartup(!databaseExits);
         }
-        
+
         return tokenRepository;
     }
 }

@@ -20,7 +20,7 @@ public class RegistrationController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @PostMapping(value = "/req/signup", consumes = "application/json")
+    @PostMapping(value = "/register", consumes = "application/json")
     public ResponseEntity<?> createUser(@RequestBody EtheneUser user) {
         try {
             user.setPassword(passwordEncoder.encode(user.getPassword()));

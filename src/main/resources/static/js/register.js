@@ -25,7 +25,7 @@ signupForm.addEventListener('submit', (event) => {
     const data = {firstname, lastname, email, password};
     const jsonData = JSON.stringify(data);
 
-    fetch('/req/signup', {
+    fetch('/signup', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
