@@ -1,35 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 - EtheneHosting</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #010101;
             margin: 0;
             padding: 0;
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100vh;
+            color: #333;
         }
-        
+
         .container {
             text-align: center;
+            padding: 2rem;
+            background: #181717;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
         }
-        
-        h1 {
-            color: #d9534f;
+
+        .container h1 {
+            font-size: 3rem;
+            color: #f35964;
+            margin-bottom: 1rem;
         }
-        
-        p {
-            color: #333;
+
+        .container p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+        }
+
+        .container a {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            color: #ffffff;
+            background-color: #3fd244;
+            text-decoration: none;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .container a:hover {
+            background-color: #43a047;
         }
     </style>
 </head>
 <body>
 <div class="container">
     <h1>404 Not Found</h1>
-    <p>Sorry, this page not exist.</p>
+    <p>Oops! The page you are looking for doesn't exist.</p>
+    <a href="/">Go Back Home</a>
 </div>
 </body>
+</html>
