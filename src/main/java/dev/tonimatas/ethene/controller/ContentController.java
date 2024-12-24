@@ -15,7 +15,12 @@ public class ContentController {
         return "signup";
     }
     
-    @GetMapping("/index")
+    @GetMapping("index")
+    public String index() {
+        return "redirect:/";
+    }
+    
+    @GetMapping("/")
     public String home() {
         return "index";
     }

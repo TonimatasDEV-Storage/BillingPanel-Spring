@@ -1,7 +1,6 @@
 package dev.tonimatas.ethene.security;
 
 import dev.tonimatas.ethene.model.EtheneUserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -42,14 +41,13 @@ public class SecurityConfig {
 
     }
 
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(httpForm -> {
                     httpForm.loginPage("/req/login").permitAll();
-                    httpForm.defaultSuccessUrl("/index");
+                    httpForm.defaultSuccessUrl("/index", true);
                 }).authorizeHttpRequests(registry -> {
                     registry.requestMatchers("/req/signup", "/css/**", "/js/**").permitAll();
                     registry.anyRequest().authenticated();
