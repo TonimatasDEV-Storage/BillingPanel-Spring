@@ -73,7 +73,15 @@ public class SecurityConfig {
     public PersistentTokenRepository persistentTokenRepository() {
         JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
         tokenRepository.setDataSource(dataSource);
-        tokenRepository.setCreateTableOnStartup(false);
+        
+        if (tokenRepository.getJdbcTemplate() != null) {
+            String query = "SELECT COUNT(*) FROM information_schema.tables WHERE table_name = ?";
+            Integer count = tokenRepository.getJdbcTemplate().queryForObject(query, Integer.class, "persistent_logins");
+            boolean databaseExits = count != null && count > 0;
+            
+            tokenRepository.setCreateTableOnStartup(!databaseExits);
+        }
+        
         return tokenRepository;
     }
 }
