@@ -7,5 +7,5 @@ import java.util.Optional;
 
 @Repository
 public interface EtheneUserRepository extends JpaRepository<EtheneUser, Long> {
-    Optional<EtheneUser> findByUsername(String username);
+    Optional<EtheneUser> findByEmail(String email);
 }

@@ -1,7 +1,5 @@
 package dev.tonimatas.ethene.model;
 
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -11,19 +9,21 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
 public class EtheneUserService implements UserDetailsService {
-    @Autowired
-    private EtheneUserRepository repository;
+    private final EtheneUserRepository repository;
+
+    public EtheneUserService(EtheneUserRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<EtheneUser> user = repository.findByUsername(username);
+        Optional<EtheneUser> user = repository.findByEmail(username);
         
         if (user.isPresent()) {
             EtheneUser etheneUser = user.get();
             return User.builder()
-                    .username(etheneUser.getUsername())
+                    .username(etheneUser.getEmail())
                     .password(etheneUser.getPassword())
                     .build();
         } else {

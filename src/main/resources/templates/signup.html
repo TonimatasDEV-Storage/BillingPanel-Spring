@@ -2,33 +2,38 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sign Up - EtheneHosting</title>
+    <title>Create account - EtheneHosting</title>
     <script src="/js/signup.js" defer></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
 <section>
-    <form action="/api/register" method="post">
+    <form>
         <div class="inputbox">
             <ion-icon name="person-outline"></ion-icon>
-            <input type="text" id="username" name="username" required>
-            <label for="">Username</label>
+            <input type="text" id="firstname" name="firstname" required>
+            <label for="firstname">First Name</label>
+        </div>
+        <div class="inputbox">
+            <ion-icon name="person-outline"></ion-icon>
+            <input type="text" id="lastname" name="lastname" required>
+            <label for="lastname">Last Name</label>
         </div>
         <div class="inputbox">
             <ion-icon name="mail-outline"></ion-icon>
             <input type="email" id="email" name="email" required>
-            <label for="">Email</label>
+            <label for="email">Email</label>
         </div>
         <div class="inputbox">
             <ion-icon name="lock-closed-outline"></ion-icon>
             <input type="password" id="password" name="password" required>
-            <label for="">Password</label>
+            <label for="password">Password</label>
         </div>
         <div class="inputbox">
             <ion-icon name="lock-closed-outline"></ion-icon>
             <input type="password" id="passwordcon" name="passwordcon" required>
-            <label for="">Password</label>
+            <label for="passwordcon">Password</label>
         </div>
         <button id="submit" type="submit">Sign Up</button>
         <div class="register">
@@ -40,17 +45,19 @@
 <script>
     const submitButton = document.getElementById("submit")
     submitButton.addEventListener('click', () => {
-        const username = document.getElementById('username').value;
+        const firstname = document.getElementById('firstname').value;
+        const lastname = document.getElementById('lastname').value;
+        const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
         const confirmPassword = document.getElementById('passwordcon').value;
-        const email = document.getElementById('email').value;
         const data = {
-            username,
-            password,
-            email
+            firstname,
+            lastname,
+            email,
+            password
         }
         
-        if (password == confirmPassword) {
+        if (password === confirmPassword) {
             const jsonData = JSON.stringify(data);
             fetch('/req/signup', {
                 method: 'POST',
@@ -59,7 +66,6 @@
                 },
                 body: jsonData
             }).then(response => {
-                
             })
         }
     })
