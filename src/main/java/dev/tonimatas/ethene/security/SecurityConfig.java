@@ -1,6 +1,6 @@
 package dev.tonimatas.ethene.security;
 
-import dev.tonimatas.ethene.model.EtheneUserService;
+import dev.tonimatas.ethene.users.EtheneUserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -12,14 +12,20 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+
+import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
     private final EtheneUserService userService;
+    private final DataSource dataSource;
 
-    public SecurityConfig(EtheneUserService userService) {
+    public SecurityConfig(EtheneUserService userService, DataSource dataSource) {
         this.userService = userService;
+        this.dataSource = dataSource;
     }
 
     @Bean
@@ -51,6 +57,23 @@ public class SecurityConfig {
                 }).authorizeHttpRequests(registry -> {
                     registry.requestMatchers("/req/signup", "/css/**", "/js/**").permitAll();
                     registry.anyRequest().authenticated();
-                }).build();
+                }).rememberMe(config -> {
+                    config.tokenRepository(persistentTokenRepository());
+                    config.key("test");
+                    config.alwaysRemember(true);
+                    config.userDetailsService(userDetailsService());
+                }).logout(config -> config.logoutUrl("/req/logout")
+                        .logoutSuccessUrl("/req/login")
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID", "remember-me"))
+                .build();
+    }
+
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository() {
+        JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
+        tokenRepository.setDataSource(dataSource);
+        tokenRepository.setCreateTableOnStartup(false);
+        return tokenRepository;
     }
 }

@@ -1,7 +1,7 @@
 package dev.tonimatas.ethene.controller;
 
-import dev.tonimatas.ethene.model.EtheneUser;
-import dev.tonimatas.ethene.model.EtheneUserRepository;
+import dev.tonimatas.ethene.users.EtheneUser;
+import dev.tonimatas.ethene.users.EtheneUserRepository;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

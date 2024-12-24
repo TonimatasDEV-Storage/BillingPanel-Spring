@@ -1,4 +1,4 @@
-package dev.tonimatas.ethene.model;
+package dev.tonimatas.ethene.users;
 
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

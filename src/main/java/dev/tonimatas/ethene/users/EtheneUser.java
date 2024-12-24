@@ -1,4 +1,4 @@
-package dev.tonimatas.ethene.model;
+package dev.tonimatas.ethene.users;
 
 import jakarta.persistence.*;
 import lombok.Getter;
