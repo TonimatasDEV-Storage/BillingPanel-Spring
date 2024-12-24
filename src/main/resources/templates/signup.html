@@ -2,14 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create account - EtheneHosting</title>
+    <title>Create account - Ethene Hosting</title>
     <script src="/js/signup.js" defer></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
 <section>
-    <form>
+    <form id="signupForm">
         <div class="inputbox">
             <ion-icon name="person-outline"></ion-icon>
             <input type="text" id="firstname" name="firstname" required>
@@ -33,8 +33,9 @@
         <div class="inputbox">
             <ion-icon name="lock-closed-outline"></ion-icon>
             <input type="password" id="passwordcon" name="passwordcon" required>
-            <label for="passwordcon">Password</label>
+            <label for="passwordcon">Confirm Password</label>
         </div>
+        <p id="errorMessage" style="color: red; display: none;"></p>
         <button id="submit" type="submit">Sign Up</button>
         <div class="register">
             <p>Already have an account? <a href="#">Log In</a></p>
@@ -42,31 +43,4 @@
     </form>
 </section>
 </body>
-<script>
-    const submitButton = document.getElementById("submit")
-    submitButton.addEventListener('click', () => {
-        const firstname = document.getElementById('firstname').value;
-        const lastname = document.getElementById('lastname').value;
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        const confirmPassword = document.getElementById('passwordcon').value;
-        const data = {
-            firstname,
-            lastname,
-            email,
-            password
-        }
-        
-        if (password === confirmPassword) {
-            const jsonData = JSON.stringify(data);
-            fetch('/req/signup', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: jsonData
-            }).then(response => {
-            })
-        }
-    })
-</script>
+</html>
