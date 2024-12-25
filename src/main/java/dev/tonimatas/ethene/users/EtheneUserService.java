@@ -1,6 +1,5 @@
 package dev.tonimatas.ethene.users;
 
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -21,13 +20,11 @@ public class EtheneUserService implements UserDetailsService {
         Optional<EtheneUser> user = repository.findByEmail(username);
 
         if (user.isPresent()) {
-            EtheneUser etheneUser = user.get();
-            return User.builder()
-                    .username(etheneUser.getEmail())
-                    .password(etheneUser.getPassword())
-                    .build();
+            return new EtheneUserDetails(user.get());
         } else {
             throw new UsernameNotFoundException(username);
         }
     }
+
+
 }

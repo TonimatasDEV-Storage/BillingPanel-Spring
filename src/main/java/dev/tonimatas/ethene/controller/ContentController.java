@@ -1,6 +1,9 @@
 package dev.tonimatas.ethene.controller;
 
+import dev.tonimatas.ethene.users.EtheneUser;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
@@ -21,7 +24,9 @@ public class ContentController {
     }
 
     @GetMapping("/")
-    public String home() {
+    public String home(@AuthenticationPrincipal EtheneUser user, Model model) {
+        model.addAttribute("firstname", user.getFirstname());
+        model.addAttribute("lastname", user.getLastname());
         return "index";
     }
 }
