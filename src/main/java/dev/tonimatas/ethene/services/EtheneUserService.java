@@ -1,8 +1,8 @@
 package dev.tonimatas.ethene.services;
 
-import dev.tonimatas.ethene.users.EtheneUser;
-import dev.tonimatas.ethene.users.EtheneUserDetails;
-import dev.tonimatas.ethene.users.EtheneUserRepository;
+import dev.tonimatas.ethene.model.user.EtheneUser;
+import dev.tonimatas.ethene.model.user.EtheneUserDetails;
+import dev.tonimatas.ethene.model.user.EtheneUserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

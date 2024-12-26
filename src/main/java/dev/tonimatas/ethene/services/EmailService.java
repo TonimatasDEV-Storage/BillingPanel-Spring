@@ -1,6 +1,6 @@
 package dev.tonimatas.ethene.services;
 
-import dev.tonimatas.ethene.users.EtheneUser;
+import dev.tonimatas.ethene.model.user.EtheneUser;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
 package dev.tonimatas.ethene.controller;
 
-import dev.tonimatas.ethene.users.EtheneUser;
+import dev.tonimatas.ethene.model.user.EtheneUser;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

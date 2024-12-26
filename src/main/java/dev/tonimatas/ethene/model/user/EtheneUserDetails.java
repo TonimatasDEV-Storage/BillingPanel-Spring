@@ -1,4 +1,4 @@
-package dev.tonimatas.ethene.users;
+package dev.tonimatas.ethene.model.user;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;

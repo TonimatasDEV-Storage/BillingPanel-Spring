@@ -1,6 +1,6 @@
 package dev.tonimatas.ethene.component;
 
-import dev.tonimatas.ethene.users.EtheneUser;
+import dev.tonimatas.ethene.model.user.EtheneUser;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
