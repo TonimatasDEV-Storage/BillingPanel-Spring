@@ -4,10 +4,10 @@ addEventListener('keypress', () => {
     }
 })
 
-const signupForm = document.getElementById("signupForm");
+const registerForm = document.getElementById("registerForm");
 const errorMessage = document.getElementById("errorMessage");
 
-signupForm.addEventListener('submit', (event) => {
+registerForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
     const firstname = document.getElementById('firstname').value;
@@ -25,7 +25,7 @@ signupForm.addEventListener('submit', (event) => {
     const data = {firstname, lastname, email, password};
     const jsonData = JSON.stringify(data);
 
-    fetch('/signup', {
+    fetch('/register', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -33,7 +33,7 @@ signupForm.addEventListener('submit', (event) => {
         body: jsonData
     }).then(response => {
         if (response.ok) {
-            window.location.href = '/';
+            window.location.href = '/verify';
         } else {
             response.text().then(text => {
                 errorMessage.textContent = text || "Something went wrong. Please try again.";
