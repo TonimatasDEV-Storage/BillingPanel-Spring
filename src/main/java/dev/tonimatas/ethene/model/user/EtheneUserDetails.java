@@ -12,7 +12,7 @@ public class EtheneUserDetails extends EtheneUser implements UserDetails {
     private static final List<GrantedAuthority> ROLE_USER = Collections.unmodifiableList(AuthorityUtils.createAuthorityList("ROLE_USER"));
 
     public EtheneUserDetails(EtheneUser user) {
-        super(user.getId(), user.getFirstname(), user.getLastname(), user.getEmail(), user.getPassword(), user.getRole(), user.getVerificationCode());
+        super(user.getId(), user.getFirstname(), user.getLastname(), user.getEmail(), user.getPassword(), user.getRole(), user.isVerified());
     }
 
     @Override

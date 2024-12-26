@@ -53,6 +53,7 @@ public class SecurityConfig {
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(httpForm -> httpForm
+                        // TODO: Add attempts system.
                         .permitAll()
                         .loginPage("/login")
                         .defaultSuccessUrl("/", true))

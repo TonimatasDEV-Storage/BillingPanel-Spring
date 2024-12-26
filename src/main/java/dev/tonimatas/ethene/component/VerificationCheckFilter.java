@@ -20,7 +20,7 @@ public class VerificationCheckFilter implements Filter {
 
             if (authentication != null) {
                 if (authentication.getPrincipal() instanceof EtheneUser user) {
-                    if (user.getVerificationCode() != null) {
+                    if (!user.isVerified()) {
                         if (!request.getRequestURI().contains("verify")) {
                             response.sendRedirect("/verify");
                             return;

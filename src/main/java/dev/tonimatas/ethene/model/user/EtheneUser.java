@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.security.SecureRandom;
-
 @Getter
 @Setter
 @Entity
@@ -24,22 +22,19 @@ public class EtheneUser {
     private String password;
     @Column(nullable = false)
     private String role = "user";
-    private Integer verificationCode = generateVerificationCode();
+    @Column(nullable = false)
+    private boolean verified = false;
 
-    public EtheneUser(Long id, String firstname, String lastname, String email, String password, String role, Integer verificationCode) {
+    public EtheneUser(Long id, String firstname, String lastname, String email, String password, String role, boolean verified) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.password = password;
         this.role = role;
-        this.verificationCode = verificationCode;
+        this.verified = verified;
     }
 
     public EtheneUser() {
-    }
-    
-    public Integer generateVerificationCode() {
-        return new SecureRandom().nextInt(100000, 999999);
     }
 }

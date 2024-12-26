@@ -1,6 +1,7 @@
 package dev.tonimatas.ethene.services;
 
 import dev.tonimatas.ethene.model.user.EtheneUser;
+import dev.tonimatas.ethene.model.verify.VerifyCode;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -23,10 +24,10 @@ public class EmailService {
 
         emailSender.send(message);
     }
-    
-    public void sendVerificationEmail(EtheneUser user) {
+
+    public void sendVerificationEmail(EtheneUser user, VerifyCode verifyCode) {
         String subject = "Account Verification";
-        String verificationCode = "VERIFICATION CODE " + user.getVerificationCode();
+        String verificationCode = "VERIFICATION CODE " + verifyCode.getVerificationCode();
         String htmlMessage = "<html>"
                 + "<body style=\"font-family: Arial, sans-serif;\">"
                 + "<div style=\"background-color: #f5f5f5; padding: 20px;\">"
