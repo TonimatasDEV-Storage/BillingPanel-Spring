@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Verify Account - Ethene Hosting</title>
+    <script defer src="/js/verify.js"></script>
+    <script src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" type="module"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+<section>
+    <form id="verifyForm">
+        <h1>Verify Account</h1>
+        <div class="inputbox">
+            <ion-icon name="checkmark-circle-outline"></ion-icon>
+            <input id="code" max="999999" name="code" required type="number">
+            <label for="code">Code</label>
+        </div>
+        <p id="errorMessage" style="color: red; display: none;"></p>
+        <button id="submit" type="submit">Verify</button>
+        <div class="resend">
+            <p>You lost the mail? <a href="#">Resend it!</a></p>
+        </div>
+        <div class="logout">
+            <p>It is not your account?<a href="/logout"> Logout!!</a></p>
+        </div>
+    </form>
+</section>
+</body>

@@ -11,12 +11,8 @@ import java.util.List;
 public class EtheneUserDetails extends EtheneUser implements UserDetails {
     private static final List<GrantedAuthority> ROLE_USER = Collections.unmodifiableList(AuthorityUtils.createAuthorityList("ROLE_USER"));
 
-    public EtheneUserDetails(EtheneUser etheneUser) {
-        this.setId(etheneUser.getId());
-        this.setEmail(etheneUser.getEmail());
-        this.setPassword(etheneUser.getPassword());
-        this.setFirstname(etheneUser.getFirstname());
-        this.setLastname(etheneUser.getLastname());
+    public EtheneUserDetails(EtheneUser user) {
+        super(user.getId(), user.getFirstname(), user.getLastname(), user.getEmail(), user.getPassword(), user.getRole(), user.getVerificationCode());
     }
 
     @Override

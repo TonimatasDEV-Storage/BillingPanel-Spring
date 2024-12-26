@@ -29,4 +29,9 @@ public class ContentController {
         model.addAttribute("lastname", user.getLastname());
         return "index";
     }
+
+    @GetMapping("/verify")
+    public String verify() {
+        return "verify";
+    }
 }
