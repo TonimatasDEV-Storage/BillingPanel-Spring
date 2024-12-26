@@ -24,7 +24,7 @@ public class EtheneUser {
     private String password;
     @Column(nullable = false)
     private String role = "user";
-    private Integer verificationCode = new SecureRandom().nextInt(100000, 999999);
+    private Integer verificationCode = generateVerificationCode();
 
     public EtheneUser(Long id, String firstname, String lastname, String email, String password, String role, Integer verificationCode) {
         this.id = id;
@@ -37,5 +37,9 @@ public class EtheneUser {
     }
 
     public EtheneUser() {
+    }
+    
+    public Integer generateVerificationCode() {
+        return new SecureRandom().nextInt(100000, 999999);
     }
 }
